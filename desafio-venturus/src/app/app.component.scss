@@ -1,0 +1,20 @@
+.sidebar{
+  width: 10%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  position: absolute;
+  align-items: start;
+}
+
+.sidebar img{
+  transform: scale(0.35);
+}
+
+.main{
+  // display: flex;
+  // justify-content: center;
+  height: 100%;
+  float: right;
+  width: 90%;
+}

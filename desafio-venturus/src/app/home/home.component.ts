@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient, HttpHeaders, HttpHandler, HttpEvent, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {FormsModule} from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -18,42 +18,26 @@ export class HomeComponent implements OnInit {
 
   }
 
-  albums;
-  pesquisa;
+  public albums;
+  public pesquisa;
 
   ngOnInit() {
-    //this.listarAlbums()
   }
-
-  // private httpOptions = {
-  //   headers: new HttpHeaders({
-  //     'Content-Type': 'application/json',
-  //     'Authorization': 'Bearer ' + this.token
-  //   })
-  // };
 
   // https://api.spotify.com/v1/albums
   listarAlbums() {
     this.http.get("https://api.spotify.com/v1/search", {
       params: {
-        q:this.pesquisa,
+        q: this.pesquisa,
         type: "album"
-      }})
+      }
+    })
       .subscribe(data => {
-        console.log(data);
+        this.albums = data;
       },
         err => {
           console.log(err);
         })
-
-
-    // this.http.get("https://api.spotify.com/v1/albums", {
-    //   headers: new HttpHeaders().set('Authorization', `Bearer ${this.token}`)
-    // }).subscribe(data => {
-    //   console.log(this.albums)
-    // })
-
-
   }
 
 
