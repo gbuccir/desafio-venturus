@@ -69,7 +69,7 @@ export class HomeComponent implements OnInit {
     }
     localStorage.setItem("itemSelecionado", JSON.stringify(item.id));
 
-    //this.router.navigate(['/albums']);
+    this.router.navigate(['/albums']);
   }
 
 }

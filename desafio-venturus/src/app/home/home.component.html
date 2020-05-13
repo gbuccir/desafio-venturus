@@ -12,7 +12,7 @@
 
   <div *ngIf="resultado != null && pesquisa == ''">
     <label class="lblPesquisa result">Albums buscados recentemente</label>
-    <div *ngFor="let item of resultado" class="blocoResultado" (click)="selecionarItem(item)">
+    <div *ngFor="let item of resultado" class="blocoResultado clicavel" (click)="selecionarItem(item)">
       <img [src]="item.images[0].url" class="resultCover">
       <p>{{item.name}}</p>
       <p>{{item.artists[0].name}}</p>
@@ -22,7 +22,7 @@
 
   <div *ngIf="resultado != null && pesquisa != ''">
     <label class="lblPesquisa result">Resultados encontrados para "{{pesquisa}}"</label>
-    <div *ngFor="let item of resultado" class="blocoResultado" (click)="selecionarItem(item)">
+    <div *ngFor="let item of resultado" class="blocoResultado clicavel" (click)="selecionarItem(item)">
       <img [src]="item.images[0].url" class="resultCover">
       <p>{{item.name}}</p>
       <p>{{item.artists[0].name}}</p>

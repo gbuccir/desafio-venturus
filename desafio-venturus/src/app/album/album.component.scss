@@ -1,0 +1,90 @@
+.resultCover{
+  height: 80px;
+  width: 80px;
+}
+
+.blocoResultado{
+  width: 80px;
+  height: 100px;
+  float: left;
+  margin: 15px;
+}
+
+.blocoResultado p{
+  color: #fafafa;
+  text-align: center;
+  margin: 0;
+  font-size: 8px;
+}
+
+.blocoResultado p:last-of-type{
+  color: #999999;
+}
+
+audio{
+  transform: scale(.4);
+  margin-top: -10px;
+}
+
+
+.albumInfo{
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  height: 100%;
+  position: absolute;
+  align-items: start;
+}
+
+.faixasAlbum{
+  height: 100%;
+  float: right;
+  width: 80%;
+}
+
+ol{
+  padding: 0;
+  margin: 0;
+}
+
+.faixasAlbum li{
+  display: flex;
+  color: #fafafa;
+}
+
+.faixasAlbum li p{
+  color: #999999;
+  font-size: 10px;
+}
+
+.faixasAlbum li p.nome{
+  color: #fafafa;
+}
+
+.faixasAlbum li div{
+  width: 50%;
+  display: flex;
+}
+
+.trackInfo{
+float: left;
+}
+
+.audioInfo{
+  float: right;
+}
+
+
+@media (max-width: 600px)
+{
+  .albumInfo{
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  .faixasAlbum{
+  float: none;
+    width: 100%;
+  }
+}
