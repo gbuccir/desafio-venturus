@@ -1,5 +1,31 @@
 <form>
-  <input name="sefuder" type="text" [(ngModel)]="pesquisa" />
-  <button (click)="this.listarAlbums()">sefuder</button>
+  <label class="lblPesquisa">Busque por artistas, albums ou músicas</label>
+  <input name="pesquisa" (change)="this.listar()" type="text" [(ngModel)]="pesquisa" class="pesquisaSpotify"
+    placeholder="Comece a escrever..." />
 </form>
 
+<section>
+  <div *ngIf="resultado == null && pesquisa != ''">
+
+    <label class="lblPesquisa result">loading . . .</label>
+  </div>
+
+  <div *ngIf="resultado != null && pesquisa == ''">
+    <label class="lblPesquisa result">Albums buscados recentemente</label>
+    <div *ngFor="let item of resultado" class="blocoResultado" (click)="selecionarItem(item)">
+      <img [src]="item.images[0].url" class="resultCover">
+      <p>{{item.name}}</p>
+      <p>{{item.artists[0].name}}</p>
+    </div>
+  </div>
+
+
+  <div *ngIf="resultado != null && pesquisa != ''">
+    <label class="lblPesquisa result">Resultados encontrados para "{{pesquisa}}"</label>
+    <div *ngFor="let item of resultado" class="blocoResultado" (click)="selecionarItem(item)">
+      <img [src]="item.images[0].url" class="resultCover">
+      <p>{{item.name}}</p>
+      <p>{{item.artists[0].name}}</p>
+    </div>
+  </div>
+</section>

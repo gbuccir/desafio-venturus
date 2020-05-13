@@ -20,7 +20,7 @@ constructor(private route: ActivatedRoute){
 
   intercept(req: HttpRequest<any>, next: HttpHandler, ): Observable<HttpEvent<any>> {
     const dupReq = req.clone({
-      headers: req.headers.set('Authorization', 'Bearer ' + "BQADnZqcdCxBi9Vk1t8G5g5Vy6Rx1VLP_1srTCm5etFHkQNkeAVv4DyuSnuJe_VnMyKVilwM5XSujvLp_BZVYwDTTCS9n0GT8-iTfO_OhwGWn-zMhn5E8XvSVxdnEWLZWoM28J9Iz7XgWQ"),
+      headers: req.headers.set('Authorization', 'Bearer ' + "BQCVAeKcFPhAQGvBfiI_A29EvGLHlrs1_uwKc0gTHwpPpBuAtlNoWJ64abZcdLlRVu6-vZbqApcwKvoWL-yE8XOZQCpBnrMEd9K-tBTkO7ln0f8BEW7PWaIWcuCREKIVpd_NNJ8SWQ1Qzw"),
     });
     return next.handle(dupReq);
   }
