@@ -12,17 +12,11 @@ export class HomeComponent implements OnInit {
 
   constructor(private router: Router, private http: HttpClient) {
 
-    // document.onscroll = function () {
-    //   if (document.documentElement.scrollTop + window.innerHeight + 20 >= document.documentElement.scrollHeight) {
-
-    //   }
-    // }
   }
 
-  @HostListener('window:scroll', ['$event']) // for window scroll events
+  @HostListener('window:scroll', ['$event']) // Scroll infinito, quando chega no fim chama nova lista
   onScroll(event) {
     if (document.documentElement.scrollTop + window.innerHeight + 10 >= document.documentElement.scrollHeight) {
-
       this.listarProximo()
     }
   }
@@ -36,15 +30,18 @@ export class HomeComponent implements OnInit {
   public itemSelecionado = null;
   public searching = false;
   private urlPagina: string;
+  private resultadoAux;
 
+  //pega os ultimos 10 albums buscados e as informacoes do usuario
   ngOnInit() {
     let topDez = JSON.parse(localStorage.getItem("topDez"));
-    //console.log(topDez)
     this.resultado = []
     this.resultado = topDez;
     this.getUsuario();
   }
 
+
+  //chamado pela pesquisa, utiliza debounce
   listar() {
     clearTimeout(this.timer)
     this.timer = setTimeout(() => {
@@ -71,6 +68,11 @@ export class HomeComponent implements OnInit {
   }
 
 
+  /*
+  Quando selecionado um album, verifica se o album selecionado ja faz parte dos ultimos acessados
+  caso nao faça é inserido, salva no storage do browser a lista e o item selecionado.
+  Avança para tela de detalhes do album contendo as faixas e faz a listgem
+  */
   selecionarItem(item) {
     let arrayItens = [];
     let topStorage = JSON.parse(localStorage.getItem("topDez"));
@@ -91,7 +93,7 @@ export class HomeComponent implements OnInit {
 
 
   ///album selecionado
-
+  //Apos selecionar o album faz a listagem das faixas a partir do seu Id
   listarFaixas(idSelected) {
     this.searching = true;
     this.http.get("https://api.spotify.com/v1/albums/" + idSelected)
@@ -107,18 +109,19 @@ export class HomeComponent implements OnInit {
 
   }
 
+  // converte a duração da faixa de milisegundos para minutos:segundos
   converterDuracao(ms) {
     var minutes = Math.floor(ms / 60000);
     var seconds = ((ms % 60000) / 1000).toFixed(0);
     return minutes + ":" + (parseInt(seconds) < 10 ? '0' : '') + seconds;
   }
 
+  //volta para a tela de pesquisa
   voltar() {
     this.albumSelecionado = false;
   }
 
-
-
+  //recupera imagem do usuario a a partir da API spotify
   getUsuario() {
     this.searching = true;
     this.http.get("https://api.spotify.com/v1/me")
@@ -139,7 +142,7 @@ export class HomeComponent implements OnInit {
   }
 
 
-  private resultadoAux;
+  ///lista os poroximos resultados no scroll
   listarProximo() {
     if (this.urlPagina != null) {
 
@@ -152,7 +155,7 @@ export class HomeComponent implements OnInit {
           console.log(data)
           if (this.resultado.next != null)
             this.urlPagina = this.resultado.next
-            else
+          else
             this.urlPagina = null
         },
           err => {
@@ -163,6 +166,7 @@ export class HomeComponent implements OnInit {
   }
 
 
+  ///funcao padrao de erro para saber se o token da dessao expirou
   verificaErro(err) {
     if (err.error.error.message == "The access token expired")
       alert("Token expirado, tente novamente")
