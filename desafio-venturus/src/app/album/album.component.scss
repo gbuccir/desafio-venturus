@@ -21,6 +21,59 @@
   color: #999999;
 }
 
+.pesquisaSpotify::placeholder{
+  color:#999999;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+
+.pesquisaSpotify{
+  background-color: transparent;
+  border: 0;
+  border-bottom: 1px solid #fafafa;
+  width: 95%;
+  color: white;
+  font-size: 24px;
+}
+
+.lblPesquisa{
+font-weight: normal;
+color:#fafafa;
+font-size:10px;
+}
+
+.lblPesquisa.result{
+  float: left;
+    clear: both;
+    width: 100%;
+    margin: 10px 0 0;
+}
+
+////// album selecionado
+.resultCover{
+  height: 80px;
+  width: 80px;
+}
+
+.blocoResultado{
+  width: 80px;
+  height: 100px;
+  float: left;
+  margin: 15px;
+}
+
+.blocoResultado p{
+  color: #fafafa;
+  text-align: center;
+  margin: 0;
+  font-size: 8px;
+}
+
+.blocoResultado p:last-of-type{
+  color: #999999;
+}
+
 audio{
   transform: scale(.4);
   margin-top: -10px;
@@ -74,6 +127,10 @@ float: left;
   float: right;
 }
 
+.btnVoltar{
+  color: #fafafa;
+  cursor: pointer;
+}
 
 @media (max-width: 600px)
 {

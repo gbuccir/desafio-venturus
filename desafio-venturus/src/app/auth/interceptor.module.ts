@@ -8,19 +8,12 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
 
 export class HttpsRequestInterceptor implements HttpInterceptor {
 
-
-
 constructor(private route: ActivatedRoute){
-  // this.route.paramMap.subscribe((params: ParamMap) => {
-  //   let code = params.get("code");
-  //   console.log("code")
-  //   console.log(code)
-  // });
-}
+  }
 
   intercept(req: HttpRequest<any>, next: HttpHandler, ): Observable<HttpEvent<any>> {
     const dupReq = req.clone({
-      headers: req.headers.set('Authorization', 'Bearer ' + "BQCVAeKcFPhAQGvBfiI_A29EvGLHlrs1_uwKc0gTHwpPpBuAtlNoWJ64abZcdLlRVu6-vZbqApcwKvoWL-yE8XOZQCpBnrMEd9K-tBTkO7ln0f8BEW7PWaIWcuCREKIVpd_NNJ8SWQ1Qzw"),
+      headers: req.headers.set('Authorization', 'Bearer ' + "BQAUHSR6Tw1RKfAJvmUZeabHofngy9_HLJxDWg3zXHR0dvdf-qcIOtNlxe3U-vohNHVj61GcFv8PKAiodFkJm0dPoEj0fqtgAIslICjXxuOZkxURhJvmNd0Bqh7WQkbr8ii0NvSy_U1Csg"),
     });
     return next.handle(dupReq);
   }

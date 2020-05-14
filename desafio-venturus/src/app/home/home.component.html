@@ -1,12 +1,15 @@
-<form>
+
+<img *ngIf="temImagem" [src]="this.userImg.images[0].url" class="imgPerfil"/>
+
+<section *ngIf="!albumSelecionado">
+<form >
   <label class="lblPesquisa">Busque por artistas, albums ou músicas</label>
   <input name="pesquisa" (change)="this.listar()" type="text" [(ngModel)]="pesquisa" class="pesquisaSpotify"
     placeholder="Comece a escrever..." />
 </form>
 
-<section>
-  <div *ngIf="resultado == null && pesquisa != ''">
-
+<section >
+  <div *ngIf="searching">
     <label class="lblPesquisa result">loading . . .</label>
   </div>
 
@@ -28,4 +31,36 @@
       <p>{{item.artists[0].name}}</p>
     </div>
   </div>
+</section>
+
+</section>
+
+<section *ngIf="albumSelecionado" (scroll)="deuScroll()">
+  <p class="btnVoltar clicavel" (click)="voltar()">< Voltar</p>
+
+    <aside class="albumInfo">
+      <div class="blocoResultado" *ngIf="this.itemSelecionado != null">
+        <img [src]="this.itemSelecionado.images[0].url" class="resultCover">
+        <p>{{ this.itemSelecionado.name}}</p>
+        <p>{{ this.itemSelecionado.artists[0].name}}</p>
+      </div>
+    </aside>
+
+    <section class="faixasAlbum">
+      <ol *ngIf="this.itemSelecionado != null">
+        <li *ngFor="let track of this.itemSelecionado.tracks.items">
+          <div class="trackInfo">
+            <p>{{track.track_number}}. &nbsp;</p>
+            <p class="nome">{{track.name}}</p>
+          </div>
+          <div class="audioInfo">
+            <audio controls>
+              <source [src]="track.preview_url" type="audio/mpeg">
+            </audio>
+            <p>{{converterDuracao(track.duration_ms)}}</p>
+          </div>
+        </li>
+      </ol>
+    </section>
+
 </section>
