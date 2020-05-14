@@ -58,7 +58,7 @@ export class HomeComponent implements OnInit {
             this.urlPagina = this.resultado.albums.next
           this.resultado = this.resultado.albums.items
           this.searching = false;
-          console.log(data)
+          // console.log(data)
         },
           err => {
             this.verificaErro(err)
